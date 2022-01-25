@@ -10,7 +10,7 @@ const katex = require('rehype-katex');
 const config = {
   title: 'Yoki',
   tagline: 'A better knowlege source !',
-  url: 'https://yoki.io', // TODO
+  url: 'https://openyoki.vercel.app', // TODO
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

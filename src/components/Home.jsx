@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "@theme/Layout"
 import Link from "@docusaurus/Link"
 import bannerImg from "../../static/img/main.png"
+import webpimage from "../../static/img/anim.webp"
 
 import "../css/components/home.css"
 
@@ -9,7 +10,11 @@ function Banner() {
   return (
     <div className="container banner">
       <div className="banner_left">
-        <img className="banner_logo" src="/img/logo.png" alt="ec logo" />
+        <img className="banner_logo" 
+        // src="/img/anim.webp"
+        src ='https://media.giphy.com/media/eH184pC3SbwOYj0Yed/giphy.gif' 
+        alt="ec logo" />
+        
         <Link
           className="button button--secondary button--lg install_btn"
           to="/docs/intro"
@@ -19,7 +24,9 @@ function Banner() {
       </div>
       <div className="banner__right">
         <img
-          src={bannerImg}
+           src={bannerImg}
+          // src='https://media.giphy.com/media/kgb3OJ0o9Qnqf6JjWQ/giphy.gif'
+          // src={webpimage}
           className="banner__right--screenshot"
           alt="banner image"
         />
