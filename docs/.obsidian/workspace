@@ -1,0 +1,100 @@
+{
+  "main": {
+    "id": "5fa7429bdfca3e9a",
+    "type": "split",
+    "children": [
+      {
+        "id": "3729acc414639de5",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Electronics/Analog electronics/Chapter 1.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f63e93b162b5a6bb",
+    "type": "split",
+    "children": [
+      {
+        "id": "051f9013b43a73cf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4cad56b56d84666a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "1703a9b9e076bedf",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "bea9ecdd9c9a40c9",
+    "type": "split",
+    "children": [
+      {
+        "id": "d80223b9d9ac27e7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "66f19ce5f741afac",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Electronics/Analog electronics/Chapter 1.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "3729acc414639de5",
+  "lastOpenFiles": [
+    "Electronics/Analog electronics/Chapter 1.md",
+    "Electronics/index.md",
+    "Electronics/Analog electronics/Chapter 3.md",
+    "Electronics/Analog electronics/index.md",
+    "intro.md",
+    "Electronics/Analog electronics/Resources/C1_HPRC.png"
+  ]
+}
