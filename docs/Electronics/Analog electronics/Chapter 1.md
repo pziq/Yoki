@@ -193,5 +193,111 @@ An RC circuit should follow this condition this condition to act as a differenti
 
 If we apply a square input to a differentiator , the output will be a spike signal , this happens because the RC time constant is very low so the capacitor will charge and discharge rapidly making the tilted square wave output to be a spike output.we can use this output signal in various other circuits as a trigger signal.
 
-[spike output image]
+![RC differentiator outputs](./Resources/C1_DIFFIO.webp)
 
+---
+## Lowpass RC
+This circuit will only pass low frequency signals.
+
+[highpass circuit]
+
+we know, the reactance of the capacitor is ,
+$$
+X_C = \frac{1}{j\omega c}
+$$
+so , we can say,
+$$
+X_C \propto \frac{1}{\omega}
+$$
+since $\omega = 2\pi f$ , we can say ,
+$$
+X_C \propto \frac{1}{f}
+$$
+
+Thus when frequency is low , the reactance of the capacitor will be very high , hence capacitor will act as a short circuit , hence less voltage will be available at output. at high frequency the reactance will be low , and because of that capacitor will act as an open circuit, so we will get more voltage at output .
+
+### frequency responce
+
+From the circuit ,
+$$
+V_{out}=iX_C=i\big(\frac{1}{j\omega C}\big) \tag{1}
+$$
+$$
+V_{in}=i\bigg(R+\frac{1}{j\omega C}\bigg) \tag{2}
+$$
+so gain is, $\frac{(1)}{(2)}$ ie.
+$$
+gain = \frac{\frac{1}{j\omega C}}{R + \frac{1}{j\omega C}} 
+$$
+we can simplify this equation as,
+$$
+gain = \frac{1}{1 + \frac{j}{2\pi f RC}} 
+$$
+now lets keep, $\frac{1}{2\pi RC} = f_2$ , which is the cutoff frequency.
+$$
+gain = \frac{1}{1 + j\frac{f}{f_2}} 
+$$
+now we have a complex equation connecting gain and frequency, if we take the magnitude of this gain,
+$$
+|gain|=\frac{1}{\sqrt[2]{1+\big(\frac{f}{f_2}\big)^2}}
+$$
+
+using the above equation we can draw the frequency responce of High pass filter. 
+
+[Frequency responce of LP]
+
+>note : if we keep $f_1=f$  ,  we will get gain as $\frac{1}{\sqrt[2]{2}}$, the db equivalent of this is -3db
+
+### Responce to step input
+
+[LP responce to step image]
+
+Assuming the initial voltage in capacitor as 0 , at $t=0$ the capacitor will start to charge from 0 to $V$, since output is across this capacitor the output will be equal to the capacitor voltage.
+
+we know the voltage in a capacitor 
+$$
+V_C = V_{final}-\big((V_{final}-V_{initial})e^{\frac{-t}{RC}}\big)
+$$
+since $V_{initial}=0,V_{final}=V$ and $V_C = V_{out}$,
+$$
+V_{out}=V(1-e^\frac{-t}{RC}) \tag{1}
+$$
+
+#### Rise time
+
+It is the time taken for the output to change from 10% of the input voltage to 90% of the input voltage.
+lets say, at $t=t_1 , V_{out}=10\% V_{in}$  and at $t=t_2 , V_{out}=90\% V_{in}$
+
+using $(1)$ , at $t=t_1$
+$$
+\frac{10}{100}V=V(1-e^\frac{-t_1}{RC})
+$$
+ie. 
+$$
+e^\frac{t_1}{RC}=\frac{1}{0.9}
+$$
+taking log on both sides,
+$$
+\frac{t_1}{RC}ln(e) = ln(\frac{1}{0.9})
+$$
+ie.
+$$
+t_1=0.1RC \tag{2}
+$$
+Similarly at $t=t_2$,
+$$
+e^\frac{t_2}{RC}=\frac{1}{0.1}
+$$
+taking log on both sides,
+$$
+\frac{t_2}{RC}ln(e) = ln(\frac{1}{0.1})
+$$
+ie.
+$$
+t_2 = 2.3RC
+$$
+so we can define rise time $t_r$ as ,
+$$
+t_r = 2.2RC
+$$
+### Responce to square input
