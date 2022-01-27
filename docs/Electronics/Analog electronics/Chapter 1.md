@@ -148,6 +148,7 @@ in percentage,
 $$
 T_p=\frac{T}{2RC}\times100\%
 $$
+
 ### RC Highpass circuit as a Differentiator
 
 RC Highpass circuit can act as a differentiator under 2 conditions ,
@@ -301,3 +302,63 @@ $$
 t_r = 2.2RC
 $$
 ### Responce to square input
+
+[Square wave to LP]
+Lets assume before $t=0$,the circuit already receives a reqgative square wave and the capacitor is at discharging state, not at $t=0$ ,lets say the voltage is $V_1$.
+During $T_1$ the input is a positive square wave , so the capacitor will charge from $V_1$ to $V$ and the output will increase exponentially from $V_1$ to $V$ following the equation,
+$$
+V_2=V-\big((V-V_1)e^\frac{-T_1}{RC}\big)
+$$
+similarly during $T_2$
+$$
+V_1=-V-\big((-V-V_2)e^\frac{-T_2}{RC}\big)
+$$
+For a symmetric wave we can say $T_1=T_2=\frac{T}{2}$ and $V_1=-V_2$
+
+### RC Lowpass circuit as an Integrator
+
+For an RC Lowpass circuit to work as an Integrator , there are 2 conditions,
+1. $R >>> X_C$
+2. Angle of gain should be $90\degree$
+We know ,
+$$
+i=C\frac{dV}{dt}
+$$
+Integrating both sides,
+$$
+V_{out}=\frac{1}{C}\int idt \tag{1}
+$$
+We are using $V_{out}$ since it is the voltage across the capacitor,
+
+now applying condition $(1)$,most of the current will be available across R,ie.
+$$
+i=\frac{V_{in}}{R}
+$$
+Applying this in $(1)$,
+$$
+V_{out}=\frac{1}{RC}\int{V_{in}}dt
+$$
+Here we can see that the output voltage is the integral of input voltage
+
+We know,
+$$
+gain=\frac{1}{1+j\omega RC}
+$$
+and 
+$$
+\angle gain = -tan^{-1}(2\pi fRC)
+$$
+If we apply condition $(2)$, the $2\pi fRC$ term should become 0 , which is not realizable , hence we will go for $89.42\degree$ instead of $90\degree$, which is the inverse tan of 100.
+ie.
+$$
+100 \le 2\pi fRC
+$$
+or,
+$$
+RC \ge 16T
+$$
+##### Square wave input to an integrator 
+since RC is very large charging and discharging will be in a linear way, so the output will be a triangular wave.
+
+[sqr to triangle]
+
