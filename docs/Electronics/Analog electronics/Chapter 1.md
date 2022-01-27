@@ -364,7 +364,7 @@ since RC is very large charging and discharging will be in a linear way, so the 
 
 ## Transistor Biasing
 Biasing is the process of providing DC voltage which helps in the functioning of the circuit. A transistor is based in order to make the circuit operate in the desired region (Active/linear region in most cases).
-![TransistorBiased](./Resources/TransistorBiased.png)
+![TransistorBiased](./Resources/TransistorBiased.PNG)
 
 
 #### Need For Biasing in a Transistor
