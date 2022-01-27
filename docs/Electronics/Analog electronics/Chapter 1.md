@@ -362,3 +362,161 @@ since RC is very large charging and discharging will be in a linear way, so the 
 
 [sqr to triangle]
 
+## Transistor Biasing
+Biasing is the process of providing DC voltage which helps in the functioning of the circuit. A transistor is based in order to make the circuit operate in the desired region (Active/linear region in most cases).
+![TransistorBiased](./Resources/TransistorBiased.png)
+
+
+#### Need For Biasing in a Transistor
+
+- Biasing will ensure the operation of transistor in correct region.
+- It stabilizes the circuit against eternal variations.
+- In case of amplification , it will provide proper source and amplifies the weak signal faithfully
+- Shape of the waveform will be preserved from input to output
+### Q-point
+Q-point is an imaginary point on the transfer curve of a transistor. For a transistor to be operated as a faithful amplifier, the operating point should be stabilized.
+
+The main factor that affect the operating point is :
+
+-  Variations in temperature (most important)
+-  Fluctuations in power supply
+-  Aging of components
+  
+As temperature increases, the values of $I_{CE}$ , $\beta$ and  $V_{BE}$ gets affected.
+
+-   $I_{CBO}$ (collector leakage current) gets doubled (for every $10^\circ$ rise)
+-   $V_{BE}$ decreases by 2.5mv (for every $1^\circ$ rise)
+
+The below equations shows the dependency of  temperature in $I_C$
+$$
+\begin{align}I_C=βI_B+I_{CEO}\\I_C=βI_B+(β+1)I_{CBO}\end{align}
+$$
+
+As the temperature increases $I_C$ increases , this causes heat dissipation which in turn increases the temperature again , if the transistor is not stabilized , this cumulative effect will eventually result in the destruction of the transistor , this effect is called as the thermal runaway.
+### Stabilization
+
+The process of making the operating point independent of temperature changes or variations in transistor parameters is known as Stabilization. The extent to which a biasing circuit is successful in maintaining this is measured by Stability factor (S). Lower the value of S , better the stability.
+
+Different stabilization factors are :
+
+1. Variation of $I_C$ with $I_{CO}$  
+$$
+S={\frac{\delta I_C}{\delta I_{CO}} = {\frac{\Delta I_C}{\Delta I_{CO}}} = {\frac{(\beta + 1)}{(1- \beta\frac{dI_B}{dI_C})}}}
+$$ where $I_{CO}$ is reverse saturation current
+
+2. Variation of $I_C$ with $V_{BE}$ 
+$$
+S'={\frac{\delta I_C}{\delta V_{BE}} = {\frac{\Delta I_C}{\Delta V_{BE}}}}
+$$
+
+3. Variation of $I_C$ with $β$ 
+$$
+S''={\frac{\delta I_C}{\delta β} = {\frac{\Delta I_C}{\Delta β}}}
+$$
+
+Thus the variation of $I_C$ can be expressed as 
+$$
+\Delta I_C = (\ S\times\Delta I_{CO} \ )\ +(\ S'\times\Delta V_{BE} \ )\ +(\ S''\times\Delta \beta \ )\ 
+$$
+
+## Biasing Techniques
+#### Fixed Bias
+
+Here the transistor is driven from $V_{CC}$ through a resistor $R_B$ and $R_C$ . Proper resistor values are picked for biasing the transistor. The stabilization is poor and Thermal runaway is not stopped with fixed bias.
+
+  
+
+![fixedbias](FixedBias.PNG)
+
+  
+
+equation for the base loop is, 
+$$
+V_{CC} = I_B R_B + V_{BE}
+$$
+we can neglect $V_{BE}$ from equation (1), $$R_B = \frac{V_{CC}}{I_B} \tag{1}$$
+
+here $V_{CC}$ is a fixed known quantity and $I_B$ is chosen at some suitable value. using those values we can find $R_B$ which is a constant.
+
+  
+
+now, we know , $$I_C = \beta I_B + (\beta + 1)I_{CO}$$
+
+Substituting (1) and differentiating above equation with respect to $I_{CO}$ $$S=\beta +1$$
+
+Which means $I_C$ varies $\beta +1$ times any change in $I_{CO}$
+
+  
+
+Alternatively , we know $$S= {\frac{(\beta + 1)}{(1- \beta\frac{dI_B}{dI_C})}}$$
+
+in fixed bias $I_B$ is independent of $I_C$ $$ie. \quad \frac {dI_B}{dI_C} = 0$$
+
+so, $$S=\beta +1$$
+
+  
+
+#### Collector to Base Bias
+
+  
+
+This is a modification to fixed bias circuit. Here instead of connecting $R_B$ to $V_{CC}$ , it is connected to collector.
+
+  
+
+![[CollectorToBaseBias.PNG]]
+
+  
+
+KVL on Base loop, $$\begin{align} V_{CC} = I R_C + I_B R_B + V_{BE} \\ ie. \quad V_{CC} = (I_C + I_B)R_C + I_B R_B+ V_{BE} \tag{1} \end{align}$$
+
+KVL on collector loop, $$V_{CC} = (I_C+I_B)R_C + V_{CE} \tag{2}$$
+
+  
+
+we can neglect $V_{BE}$ as it is small compared to $V_{CC}$ ,$$ I_B = \frac{V_{CC}-I_C R_C}{R_C + R_B} \tag{3}$$
+
+substituting this in the equation $I_C = \beta I_B + (\beta + 1)I_{CO}$
+
+$$I_C = \frac {\beta(V_{CC}-I_C R_C)}{R_C + R_B} +(\beta +1)I_{CO}$$
+
+Differentiate this w.r.t to $I_{CO}$ ,$$S= \frac {\beta + 1}{1+\beta\frac{R_C}{R_C + R_B}}$$
+
+Alternatively we can differentiate (3) with $I_C$ and substitute in the equation of S.
+
+since the denominator is grater than unity , the final value will be less than $\beta +1$ , hence it will provide better stability than fixed-bias circuit.
+
+  
+
+#### Voltage Divider Bias / Potential Divider Bias
+
+  
+
+Here base is biased with a voltage divider network made of $R_1$ and $R_2$ . The resistor $R_E$ employed in the emitter provides stabilization.
+
+  
+
+![[VoltageDividerBias.PNG]]
+
+  
+
+from the circuit, $$I_1 = \frac{V_{CC}}{R_1+R_2}$$
+
+Since $I_B$ is very small, current flowing through $R_2$ will be almost equal to current flowing through $R_1$. so , the voltage across $R_2$ is $$V_2 = \bigg(\frac{V_{CC}}{R_1+R_2}\bigg)R_2$$
+
+KVL in base circuit, $$\begin{align} V_2 = V_{BE}+V_E \\ V_2 = V_{BE}+I_E R_E \end{align}$$
+
+i.e. $$I_E = \frac{V_2-V_{BE}}{R_E}$$
+
+$I_E ≈ I_C$  so, $$I_C = \frac{V_2-V_{BE}}{R_E}$$
+
+The above equation don't depend on $\beta$ and $V_{BE}$, i.e.  $I_C$ is independent of transistor parameters and good stabilization is achieved.
+
+  
+
+Applying KVL in collector side, $$V_{CC} = I_C R_C + V_{CE} + I_E R_E$$
+
+since , $I_E ≈ I_C$ , $$V_{CC} = I_C R_C + V_{CE} + I_C R_E$$
+
+i.e. $$V_{CC} = I_C(R_C + R_E) + V_{CE}$$
+
