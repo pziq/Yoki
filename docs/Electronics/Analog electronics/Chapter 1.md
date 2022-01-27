@@ -426,7 +426,7 @@ The first type is discussed here.
 
 Here the transistor is driven from $V_{CC}$ through a resistor $R_B$ . Proper resistor values are picked for biasing the transistor. The stabilization is poor and Thermal runaway is not stopped with fixed bias.
 
-![fixedbias](FixedBias.PNG)
+![fixedbias](./Resources/FixedBias.PNG)
 equation for the base loop is, 
 $$
 V_{CC} = I_B R_B + V_{BE} \tag{1}
