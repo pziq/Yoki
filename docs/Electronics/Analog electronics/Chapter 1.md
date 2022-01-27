@@ -420,41 +420,47 @@ $$
 $$
 
 ## Biasing Techniques
+Transistor biasing can be classified into biasing using single power supply, and biasing using two power supply.
+The first type is discussed here.
 #### Fixed Bias
 
-Here the transistor is driven from $V_{CC}$ through a resistor $R_B$ and $R_C$ . Proper resistor values are picked for biasing the transistor. The stabilization is poor and Thermal runaway is not stopped with fixed bias.
-
-  
+Here the transistor is driven from $V_{CC}$ through a resistor $R_B$ . Proper resistor values are picked for biasing the transistor. The stabilization is poor and Thermal runaway is not stopped with fixed bias.
 
 ![fixedbias](FixedBias.PNG)
-
-  
-
 equation for the base loop is, 
 $$
-V_{CC} = I_B R_B + V_{BE}
+V_{CC} = I_B R_B + V_{BE} \tag{1}
 $$
-we can neglect $V_{BE}$ from equation (1), $$R_B = \frac{V_{CC}}{I_B} \tag{1}$$
+also if we look at collector loop,
+$$
+V_{CC}=I_CR_C+V_{CE} \tag{2}
+$$
+we can solve $(1)$ and $(2)$ to find the q point.
 
-here $V_{CC}$ is a fixed known quantity and $I_B$ is chosen at some suitable value. using those values we can find $R_B$ which is a constant.
+we can neglect $V_{BE}$ from equation (1), $$R_B = \frac{V_{CC}}{I_B} \tag{3}$$here $V_{CC}$ is a fixed known quantity and $I_B$ is chosen at some suitable value. using those values we can find $R_B$ which is a constant.
 
-  
-
-now, we know , $$I_C = \beta I_B + (\beta + 1)I_{CO}$$
-
-Substituting (1) and differentiating above equation with respect to $I_{CO}$ $$S=\beta +1$$
-
+now, we know , 
+$$
+I_C = \beta I_B + (\beta + 1)I_{CO}
+$$
+Substituting (3) and differentiating above equation with respect to $I_{CO}$ 
+$$
+S=\beta +1
+$$
 Which means $I_C$ varies $\beta +1$ times any change in $I_{CO}$
 
-  
-
-Alternatively , we know $$S= {\frac{(\beta + 1)}{(1- \beta\frac{dI_B}{dI_C})}}$$
-
-in fixed bias $I_B$ is independent of $I_C$ $$ie. \quad \frac {dI_B}{dI_C} = 0$$
-
-so, $$S=\beta +1$$
-
-  
+Alternatively , we know 
+$$
+S= {\frac{(\beta + 1)}{(1- \beta\frac{dI_B}{dI_C})}}
+$$
+in fixed bias $I_B$ is independent of $I_C$ 
+$$
+ie. \quad \frac {dI_B}{dI_C} = 0
+$$
+so, 
+$$
+S=\beta +1
+$$
 
 #### Collector to Base Bias
 
@@ -468,12 +474,14 @@ This is a modification to fixed bias circuit. Here instead of connecting $R_B$ t
 
   
 
-KVL on Base loop, $$\begin{align} V_{CC} = I R_C + I_B R_B + V_{BE} \\ ie. \quad V_{CC} = (I_C + I_B)R_C + I_B R_B+ V_{BE} \tag{1} \end{align}$$
-
+KVL on Base loop, 
+$$
+V_{CC} = I R_C + I_B R_B + V_{BE}
+$$
+$$
+ie. \quad V_{CC} = (I_C + I_B)R_C + I_B R_B+ V_{BE} \tag{1}
+$$
 KVL on collector loop, $$V_{CC} = (I_C+I_B)R_C + V_{CE} \tag{2}$$
-
-  
-
 we can neglect $V_{BE}$ as it is small compared to $V_{CC}$ ,$$ I_B = \frac{V_{CC}-I_C R_C}{R_C + R_B} \tag{3}$$
 
 substituting this in the equation $I_C = \beta I_B + (\beta + 1)I_{CO}$
@@ -481,42 +489,72 @@ substituting this in the equation $I_C = \beta I_B + (\beta + 1)I_{CO}$
 $$I_C = \frac {\beta(V_{CC}-I_C R_C)}{R_C + R_B} +(\beta +1)I_{CO}$$
 
 Differentiate this w.r.t to $I_{CO}$ ,$$S= \frac {\beta + 1}{1+\beta\frac{R_C}{R_C + R_B}}$$
-
 Alternatively we can differentiate (3) with $I_C$ and substitute in the equation of S.
 
 since the denominator is grater than unity , the final value will be less than $\beta +1$ , hence it will provide better stability than fixed-bias circuit.
 
-  
-
 #### Voltage Divider Bias / Potential Divider Bias
-
-  
 
 Here base is biased with a voltage divider network made of $R_1$ and $R_2$ . The resistor $R_E$ employed in the emitter provides stabilization.
 
-  
 
 ![[VoltageDividerBias.PNG]]
+Drawing the Thevenin's equivalent circuit
 
-  
+[equivalent circuit]
 
-from the circuit, $$I_1 = \frac{V_{CC}}{R_1+R_2}$$
+From the circuit.
+$$
+V_{BB}=V_{CC}\bigg(\frac{R_2}{R_1+R_2}\bigg)
+$$
+and 
+$$
+R_B=R_{th}=(R_1 \parallel R_2 )= \frac{R_1R_2}{R_1+R_2}
+$$
+taking input side,
+$$
+V_{BB}=I_BR_B+V_{BE}+(I_B+I_C)R_E \tag{1}
+$$
+and at outputside,
+$$
+V_{CC}=I_CR_C+V_{CE}+(I_B+I_C)R_E
+$$
 
-Since $I_B$ is very small, current flowing through $R_2$ will be almost equal to current flowing through $R_1$. so , the voltage across $R_2$ is $$V_2 = \bigg(\frac{V_{CC}}{R_1+R_2}\bigg)R_2$$
+we can neglect $V_{BE}$ as it is very low compared to $V_{CC}$ and we can isolate $I_B$ in equation (1).
+ie.
+$$
+I_B(R_B+R_E)= V_{BB}-I_CR_E
+$$
+so , 
+$$
+I_B=\frac{V_{BB}-I_CR_E}{R_B+R_E}
+$$
 
-KVL in base circuit, $$\begin{align} V_2 = V_{BE}+V_E \\ V_2 = V_{BE}+I_E R_E \end{align}$$
+we know $I_C=\beta I_B+(\beta+1)I_{CO}$ , substituting the value of $I_B$ in the equation and expanding,
 
-i.e. $$I_E = \frac{V_2-V_{BE}}{R_E}$$
+$$
+I_C=\frac{\beta V_{BB}}{R_B+R_E} - \frac{\beta I_CR_E}{R_B+R_E}+(\beta + 1)I_{CO}
+$$
+isolating $I_C$
+$$
+I_C\big(1 + \frac{\beta R_E}{R_B+R_E}\big)=\frac{\beta V_{BB}}{R_B+R_E} +(\beta + 1)I_{CO}
+$$
+ie. 
+$$
+I_C = \frac{\bigg(\frac{\beta V_{BB}}{R_B+R_E} +(\beta + 1)I_{CO}\bigg)}{(1 + \frac{\beta R_E}{R_B+R_E}}
+$$
+Differentiating this w.r.t $I_{CO}$ , we will get $S$
+ie. 
+$$
+S=\frac{1}{1+\frac{\beta R_E}{R_B+R_E}}
+$$
 
-$I_E ≈ I_C$  so, $$I_C = \frac{V_2-V_{BE}}{R_E}$$
+#### Advantage
+- The stablity factor is improved compared to other biasing methords
+- Thermal stablity is achived , because here $I_B$ reduces due to excess voltage drop across $R_E$ , this inturn reduces $I_C$ and the collector current is stablized.
 
-The above equation don't depend on $\beta$ and $V_{BE}$, i.e.  $I_C$ is independent of transistor parameters and good stabilization is achieved.
 
-  
 
-Applying KVL in collector side, $$V_{CC} = I_C R_C + V_{CE} + I_E R_E$$
 
-since , $I_E ≈ I_C$ , $$V_{CC} = I_C R_C + V_{CE} + I_C R_E$$
 
-i.e. $$V_{CC} = I_C(R_C + R_E) + V_{CE}$$
-
+ 
